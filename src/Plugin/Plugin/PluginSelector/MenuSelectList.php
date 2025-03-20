@@ -27,14 +27,14 @@ class MenuSelectList extends AdvancedPluginSelectorBase {
     /** @var \Drupal\Component\Plugin\PluginInspectionInterface[] $plugins */
 
     $element['container']['plugin_id'] = array(
-      '#ajax' => array(
-        'callback' => array(get_class(), 'ajaxRebuildForm'),
+      '#ajax' => [
+        'callback' => [$this, 'ajaxRebuildForm'],
         'effect' => 'fade',
         'event' => 'change',
-        'trigger_as' => array(
+        'trigger_as' => [
           'name' => $element['container']['change']['#name'],
-        ),
-      ),
+        ],
+      ],
       '#default_value' => $this->getSelectedPlugin() ? $this->getSelectedPlugin()->getPluginId() : NULL,
       '#empty_value' => '',
       '#options' => $this->buildOptionsLevel($this->buildPluginHierarchy($this->selectablePluginDiscovery)),
